@@ -133,6 +133,6 @@ bzip2 -f doc/*.ps
 
 
 
-%{_sysconfdir}/cvs/cvs.conf.
+%{_sysconfdir}/cvs/cvs.conf
 
 
