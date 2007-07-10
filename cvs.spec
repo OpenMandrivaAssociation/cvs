@@ -3,7 +3,7 @@
 Summary:	A version control system
 Name:		cvs
 Version:	1.12.13
-Release:	%mkrel 8
+Release:	%mkrel 9
 License:	GPL
 Group:		Development/Other
 URL:		http://www.nongnu.org/cvs/
@@ -65,11 +65,13 @@ control system.
 %patch7 -p0 -b .zlib-read
 
 %build
+# http://qa.mandriva.com/show_bug.cgi?id=31848
+%define _fortify_cflags %{nil}
+
 export SENDMAIL="%{_sbindir}/sendmail"
 
 %serverbuild
 
-export CFLAGS="%(echo $RPM_OPT_FLAGS | sed 's/-Wp,-D_FORTIFY_SOURCE=2//')"
 export CXXFLAGS="${CFLAGS}"
 export CCFLAGS="${CFLAGS}"
 
