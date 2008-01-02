@@ -31,6 +31,7 @@ BuildRequires:	zlib-devel
 BuildRequires:	tetex-latex
 BuildRequires:	tetex-dvips
 BuildRequires:	groff
+BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 CVS means Concurrent Version System; it is a version control
