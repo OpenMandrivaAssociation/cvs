@@ -3,7 +3,7 @@
 Summary:	A version control system
 Name:		cvs
 Version:	1.12.13
-Release:	%mkrel 12
+Release:	%mkrel 13
 License:	GPL
 Group:		Development/Other
 URL:		http://www.nongnu.org/cvs/
