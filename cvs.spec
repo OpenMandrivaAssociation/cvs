@@ -3,7 +3,7 @@
 Summary:	A version control system
 Name:		cvs
 Version:	1.12.13
-Release:	%mkrel 13
+Release:	%mkrel 14
 License:	GPL
 Group:		Development/Other
 URL:		http://www.nongnu.org/cvs/
@@ -20,6 +20,7 @@ Patch6:		cvs-1.11.19-cvsbug.patch
 # Patch from cvs of cvs: 
 # http://savannah.nongnu.org/bugs/?func=detailitem&item_id=14840
 Patch7:     cvs-zlib-read.patch
+Patch8:		cvs-1.12.13-format_not_a_string_literal_and_no_format_arguments.diff
 Requires:	openssh-clients
 Requires(post):	info-install
 Requires(preun): info-install
@@ -63,6 +64,8 @@ control system.
 %patch5 -p1 -b .first-login
 %patch6 -p1 -b .cvsbug
 %patch7 -p0 -b .zlib-read
+%patch8 -p1 -b .format_not_a_string_literal_and_no_format_arguments
+
 
 %build
 # http://qa.mandriva.com/show_bug.cgi?id=31848
@@ -86,7 +89,7 @@ pushd doc
 popd
 
 %install
-[ -n "%{buildroot}" -a "%{buildroot}" != / ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 install -d %{buildroot}%{_sysconfdir}/xinetd.d
 install -d %{buildroot}%{_sysconfdir}/cvs
@@ -104,9 +107,6 @@ bzip2 -f doc/*.ps
 # Disabling currently
 # make check
 
-%clean
-[ -n "%{buildroot}" -a "%{buildroot}" != / ] && rm -rf %{buildroot}
-
 %post
 %_install_info %{name}.info
 %_install_info cvsclient.info
@@ -115,6 +115,9 @@ bzip2 -f doc/*.ps
 %_remove_install_info %{name}.info
 
 %_remove_install_info cvsclient.info
+
+%clean
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
@@ -132,9 +135,3 @@ bzip2 -f doc/*.ps
 %{_mandir}/man1/cvs.1*
 %{_mandir}/man5/cvs.5*
 %{_mandir}/man8/cvsbug.8*
-
-
-
-%{_sysconfdir}/cvs/cvs.conf
-
-
