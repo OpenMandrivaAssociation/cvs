@@ -3,7 +3,7 @@
 Summary:	A version control system
 Name:		cvs
 Version:	1.12.13
-Release:	%mkrel 18
+Release:	%mkrel 19
 License:	GPL
 Group:		Development/Other
 URL:		http://www.nongnu.org/cvs/
@@ -21,6 +21,7 @@ Patch6:		cvs-1.11.19-cvsbug.patch
 # http://savannah.nongnu.org/bugs/?func=detailitem&item_id=14840
 Patch7:     cvs-zlib-read.patch
 Patch8:		cvs-1.12.13-format_not_a_string_literal_and_no_format_arguments.diff
+Patch9:		cvs-1.12.13-CVE-2012-0804.diff
 Requires:	openssh-clients
 Requires(post):	info-install
 Requires(preun): info-install
@@ -65,7 +66,7 @@ control system.
 %patch6 -p1 -b .cvsbug
 %patch7 -p0 -b .zlib-read
 %patch8 -p1 -b .format_not_a_string_literal_and_no_format_arguments
-
+%patch9 -p0 -b .CVE-2012-0804
 
 %build
 # http://qa.mandriva.com/show_bug.cgi?id=31848
