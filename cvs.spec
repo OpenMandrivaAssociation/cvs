@@ -1,9 +1,9 @@
-%define _requires_exceptions tcsh
+%define _noautoreq 'tcsh'
 
 Summary:	A version control system
 Name:		cvs
 Version:	1.12.13
-Release:	%mkrel 19
+Release:	20
 License:	GPL
 Group:		Development/Other
 URL:		http://www.nongnu.org/cvs/
@@ -19,12 +19,10 @@ Patch5:		cvs-1.11.4-first-login.patch
 Patch6:		cvs-1.11.19-cvsbug.patch
 # Patch from cvs of cvs: 
 # http://savannah.nongnu.org/bugs/?func=detailitem&item_id=14840
-Patch7:     cvs-zlib-read.patch
+Patch7:		cvs-zlib-read.patch
 Patch8:		cvs-1.12.13-format_not_a_string_literal_and_no_format_arguments.diff
 Patch9:		cvs-1.12.13-CVE-2012-0804.diff
 Requires:	openssh-clients
-Requires(post):	info-install
-Requires(preun): info-install
 BuildRequires:	autoconf2.5
 BuildRequires:	krb5-devel
 BuildRequires:	tcsh
@@ -33,7 +31,6 @@ BuildRequires:	zlib-devel
 BuildRequires:	tetex-latex
 BuildRequires:	tetex-dvips
 BuildRequires:	groff
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 CVS means Concurrent Version System; it is a version control
@@ -104,24 +101,7 @@ install -m0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/xinetd.d/%{name}
 
 bzip2 -f doc/*.ps
 
-# %check
-# Disabling currently
-# make check
-
-%post
-%_install_info %{name}.info
-%_install_info cvsclient.info
-
-%preun
-%_remove_install_info %{name}.info
-
-%_remove_install_info cvsclient.info
-
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %doc BUGS FAQ MINOR-BUGS NEWS PROJECTS TODO README
 %doc doc/*.ps.bz2
 %config(noreplace) %{_sysconfdir}/xinetd.d/%{name}
