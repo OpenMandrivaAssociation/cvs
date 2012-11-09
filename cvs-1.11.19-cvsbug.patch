@@ -1,0 +1,19 @@
+--- cvs-1.11.17/src/cvsbug.in.can-2005-2693	2005-09-13 09:21:01.077171013 -0600
++++ cvs-1.11.17/src/cvsbug.in	2005-09-13 09:21:01.077171013 -0600
+@@ -109,14 +109,14 @@
+     /usr/bin/ypcat passwd 2>/dev/null | cat - /etc/passwd | grep "^$LOGNAME:" |
+       cut -f5 -d':' | sed -e 's/,.*//' > $TEMP
+     ORIGINATOR="`cat $TEMP`"
+-    rm -f $TEMP
++    > $TEMP
+   fi
+ fi
+
+ if [ "$ORIGINATOR" = "" ]; then
+   grep "^$LOGNAME:" /etc/passwd | cut -f5 -d':' | sed -e 's/,.*//' > $TEMP
+   ORIGINATOR="`cat $TEMP`"
+-  rm -f $TEMP
++  > $TEMP
+ fi
+
+ if [ -n "$ORGANIZATION" ]; then

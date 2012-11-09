@@ -1,0 +1,6 @@
+sources:
+  "cvs-1.12.13.tar.bz2:"	93a8dacc6ff0e723a130835713235863f1f5ada9
+  "cvs-1.12.13.tar.bz2.sig:"	667460d5777293d423fd2c795c59417538c874f5
+  "cvs.conf:"	0e23cc5ac08ff64fbb563429b55006ba67c78fa3
+  "cvspserver:"	ed321dc9565246b73c2962c9db4a23d1e2cf33cc
+  "cvs-xinetd:"	339019dfe0e2e27259d2be8fae50423eb98f620b

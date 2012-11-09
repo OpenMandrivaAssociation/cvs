@@ -1,0 +1,14 @@
+--- cvs-1.11.4/src/login.c.fred	2002-06-18 01:39:00.000000000 +0200
++++ cvs-1.11.4/src/login.c	2002-12-28 22:51:00.000000000 +0100
+@@ -314,7 +314,10 @@
+     fp = CVS_FOPEN (passfile, "r");
+     if (fp == NULL)
+     {
+-	error (0, errno, "warning: failed to open %s for reading", passfile);
++	if (operation != password_entry_add)
++	{
++	    error (0, errno, "warning: failed to open %s for reading", passfile);
++	}
+ 	goto process;
+     }
+ 

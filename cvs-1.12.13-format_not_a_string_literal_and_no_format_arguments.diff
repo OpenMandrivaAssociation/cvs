@@ -1,0 +1,24 @@
+diff -Naurp cvs-1.12.13/diff/diff3.c cvs-1.12.13.oden/diff/diff3.c
+--- cvs-1.12.13/diff/diff3.c	2004-10-09 17:51:52.000000000 +0200
++++ cvs-1.12.13.oden/diff/diff3.c	2008-12-20 15:19:10.000000000 +0100
+@@ -1503,7 +1503,7 @@ output_diff3 (diff, mapping, rev_mapping
+ 	      line = 0;
+ 	      do
+ 		{
+-		  printf_output (line_prefix);
++		  printf_output ("%s", line_prefix);
+ 		  cp = D_RELNUM (ptr, realfile, line);
+ 		  length = D_RELLEN (ptr, realfile, line);
+ 		  write_output (cp, length);
+diff -Naurp cvs-1.12.13/src/main.c cvs-1.12.13.oden/src/main.c
+--- cvs-1.12.13/src/main.c	2005-10-02 17:17:21.000000000 +0200
++++ cvs-1.12.13.oden/src/main.c	2008-12-20 15:19:10.000000000 +0100
+@@ -1458,7 +1458,7 @@ usage (register const char *const *cpp)
+ {
+     (void) fprintf (stderr, *cpp++, program_name, cvs_cmd_name);
+     for (; *cpp; cpp++)
+-	(void) fprintf (stderr, *cpp);
++	(void) fprintf (stderr, "%s", *cpp);
+     exit (EXIT_FAILURE);
+ }
+ 

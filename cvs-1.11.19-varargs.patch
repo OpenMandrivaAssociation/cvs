@@ -1,0 +1,11 @@
+--- cvs-1.11.19/diff/util.c.varargs	2004-11-11 17:30:41.000000000 -0500
++++ cvs-1.11.19/diff/util.c	2005-08-23 08:02:16.000000000 -0400
+@@ -235,7 +235,7 @@ begin_output ()
+ 	      close (pipes[0]);
+ 	    }
+ 
+-	  execl (PR_PROGRAM, PR_PROGRAM, "-f", "-h", name, 0);
++	  execl (PR_PROGRAM, PR_PROGRAM, "-f", "-h", name, (char *)0);
+ 	  pfatal_with_name (PR_PROGRAM);
+ 	}
+       else

@@ -1,0 +1,59 @@
+--- ./src/update.c.errno	2005-09-22 20:49:17.000000000 +0200
++++ ./src/update.c	2006-02-22 21:11:26.741177316 +0100
+@@ -1085,8 +1085,7 @@
+ 	error (0, errno, "cannot open directory %s for empty check", dir);
+ 	return 0;
+     }
+-    errno = 0;
+-    while ((dp = CVS_READDIR (dirp)) != NULL)
++    while (errno = 0, (dp = CVS_READDIR (dirp)) != NULL)
+     {
+ 	if (strcmp (dp->d_name, ".") != 0
+ 	    && strcmp (dp->d_name, "..") != 0)
+--- ./src/lock.c.errno	2005-05-24 22:59:01.000000000 +0200
++++ ./src/lock.c	2006-02-22 21:11:26.726180370 +0100
+@@ -609,7 +609,7 @@
+ 
+ 	ret = 0;
+ 	errno = 0;
+-	while ((dp = CVS_READDIR (dirp)) != NULL)
++	while (errno = 0, (dp = CVS_READDIR (dirp)) != NULL)
+ 	{
+ 	    if (CVS_FNMATCH (filepat, dp->d_name, 0) == 0)
+ 	    {
+--- ./src/find_names.c.errno	2005-05-26 19:48:06.000000000 +0200
++++ ./src/find_names.c	2006-02-22 21:11:26.717182203 +0100
+@@ -438,8 +438,7 @@
+ 	return (1);
+ 
+     /* read the dir, grabbing sub-dirs */
+-    errno = 0;
+-    while ((dp = CVS_READDIR (dirp)) != NULL)
++    while (errno = 0, (dp = CVS_READDIR (dirp)) != NULL)
+     {
+ 	if (strcmp (dp->d_name, ".") == 0 ||
+ 	    strcmp (dp->d_name, "..") == 0 ||
+--- ./src/import.c.errno	2005-09-04 02:27:44.000000000 +0200
++++ ./src/import.c	2006-02-22 21:11:26.712183221 +0100
+@@ -464,8 +464,7 @@
+     }
+     else
+     {
+-	errno = 0;
+-	while ((dp = CVS_READDIR (dirp)) != NULL)
++	while (errno = 0, (dp = CVS_READDIR (dirp)) != NULL)
+ 	{
+ 	    if (strcmp (dp->d_name, ".") == 0 || strcmp (dp->d_name, "..") == 0)
+ 		goto one_more_time_boys;
+--- ./src/filesubr.c.errno	2005-09-28 17:25:59.000000000 +0200
++++ ./src/filesubr.c	2006-02-22 21:11:26.701185462 +0100
+@@ -470,8 +470,7 @@
+ 		 */
+ 		return -1;
+ 
+-	    errno = 0;
+-	    while ((dp = CVS_READDIR (dirp)) != NULL)
++	    while (errno = 0, (dp = CVS_READDIR (dirp)) != NULL)
+ 	    {
+ 		char *buf;
+ 
