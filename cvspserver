@@ -1,0 +1,52 @@
+#!/bin/sh
+#---------------------------------------------------------------
+# Project         : Mandrake
+# Module          : cvs
+# File            : cvspserver
+# Version         : $Id$
+# Author          : Frederic Lepied
+# Created On      : Tue Mar 28 07:49:39 2000
+# Purpose	  : Launch cvs pserver with the right options
+# according to /etc/cvs/cvs.conf.
+#---------------------------------------------------------------
+
+set -e
+
+unset HOME || :
+unset TMP || :
+unset TMPDIR || :
+
+CONF=/etc/cvs/cvs.conf
+
+if [ ! -r $CONF ]; then
+    echo "No $CONF found" 1>&2
+    exit 1
+fi
+
+. $CONF
+
+args="$@"
+for d in $CVS_REPOS; do
+    if [ -d $d/CVSROOT ]; then
+	args="$args --allow-root=$d"
+    fi
+done
+
+# libsafe support
+if [ -r /etc/sysconfig/system ]; then
+    . /etc/sysconfig/system
+
+    if [ "$LIBSAFE" = yes -a -r /lib/libsafe.so.2 ]; then
+	LD_PRELOAD=/lib/libsafe.so.2
+	export LD_PRELOAD
+    fi
+fi
+
+if [ -n "$args" ]; then
+    exec /usr/bin/cvs -f $args pserver
+else
+    echo "no repository configured in $CONF" 1>&2
+    exit 2
+fi
+
+# cvspserver ends here

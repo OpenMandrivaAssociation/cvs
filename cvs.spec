@@ -1,8 +1,13 @@
-%define _noautoreq 'tcsh'
+%if %{_use_internal_dependency_generator}
+%define __noautoreq 'tcsh|/bin/csh'
+%else
+%define _requires_exceptions tcsh\\|/bin/csh
+%endif
 
 Summary:	A version control system
 Name:		cvs
 Version:	1.12.13
+%define subrel 1
 Release:	20
 License:	GPL
 Group:		Development/Other
@@ -19,7 +24,7 @@ Patch5:		cvs-1.11.4-first-login.patch
 Patch6:		cvs-1.11.19-cvsbug.patch
 # Patch from cvs of cvs: 
 # http://savannah.nongnu.org/bugs/?func=detailitem&item_id=14840
-Patch7:		cvs-zlib-read.patch
+Patch7:     cvs-zlib-read.patch
 Patch8:		cvs-1.12.13-format_not_a_string_literal_and_no_format_arguments.diff
 Patch9:		cvs-1.12.13-CVE-2012-0804.diff
 Requires:	openssh-clients
@@ -87,8 +92,6 @@ pushd doc
 popd
 
 %install
-rm -rf %{buildroot}
-
 install -d %{buildroot}%{_sysconfdir}/xinetd.d
 install -d %{buildroot}%{_sysconfdir}/cvs
 install -d %{buildroot}%{_sbindir}
@@ -100,6 +103,10 @@ install -m0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/cvs
 install -m0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/xinetd.d/%{name}
 
 bzip2 -f doc/*.ps
+
+# %check
+# Disabling currently
+# make check
 
 %files
 %doc BUGS FAQ MINOR-BUGS NEWS PROJECTS TODO README
@@ -116,3 +123,5 @@ bzip2 -f doc/*.ps
 %{_mandir}/man1/cvs.1*
 %{_mandir}/man5/cvs.5*
 %{_mandir}/man8/cvsbug.8*
+
+

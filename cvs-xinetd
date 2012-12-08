@@ -1,0 +1,12 @@
+# CVS configuration for xinetd don't forget to specify your CVSROOT in
+#  /etc/cvs/cvs.conf.
+
+service cvspserver
+{
+	disable		    = yes
+        socket_type         = stream
+        protocol            = tcp
+        wait                = no
+        user                = root
+        server              = /usr/sbin/cvspserver
+}
