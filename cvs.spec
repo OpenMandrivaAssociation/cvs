@@ -32,7 +32,7 @@ BuildRequires:	autoconf2.5
 BuildRequires:	krb5-devel
 BuildRequires:	tcsh
 BuildRequires:	texinfo
-BuildRequires:	zlib-devel
+BuildRequires:	pkgconfig(zlib)
 BuildRequires:	tetex-latex
 BuildRequires:	tetex-dvips
 BuildRequires:	groff
@@ -81,8 +81,8 @@ export SENDMAIL="%{_sbindir}/sendmail"
 export CXXFLAGS="${CFLAGS}"
 export CCFLAGS="${CFLAGS}"
 
-%configure2_5x \
-    --with-tmpdir=/tmp
+%configure2_5x	--with-tmpdir=/tmp
+		--with-external-zlib
 
 %make
 
