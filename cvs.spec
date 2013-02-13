@@ -7,8 +7,7 @@
 Summary:	A version control system
 Name:		cvs
 Version:	1.12.13
-%define subrel 1
-Release:	20
+Release:	21
 License:	GPL
 Group:		Development/Other
 URL:		http://www.nongnu.org/cvs/
@@ -24,7 +23,7 @@ Patch5:		cvs-1.11.4-first-login.patch
 Patch6:		cvs-1.11.19-cvsbug.patch
 # Patch from cvs of cvs: 
 # http://savannah.nongnu.org/bugs/?func=detailitem&item_id=14840
-Patch7:     cvs-zlib-read.patch
+Patch7:		cvs-zlib-read.patch
 Patch8:		cvs-1.12.13-format_not_a_string_literal_and_no_format_arguments.diff
 Patch9:		cvs-1.12.13-CVE-2012-0804.diff
 Requires:	openssh-clients
@@ -81,8 +80,9 @@ export SENDMAIL="%{_sbindir}/sendmail"
 export CXXFLAGS="${CFLAGS}"
 export CCFLAGS="${CFLAGS}"
 
-%configure2_5x	--with-tmpdir=/tmp
-		--with-external-zlib
+%configure2_5x	--with-tmpdir=/tmp \
+		--with-external-zlib \
+		--with-editor=vim
 
 %make
 
