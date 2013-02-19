@@ -35,6 +35,7 @@ BuildRequires:	pkgconfig(zlib)
 BuildRequires:	tetex-latex
 BuildRequires:	tetex-dvips
 BuildRequires:	groff
+BuildRequires:	vim-minimal
 
 %description
 CVS means Concurrent Version System; it is a version control
