@@ -10,9 +10,9 @@ Version:	1.12.13
 Release:	21
 License:	GPL
 Group:		Development/Other
-URL:		http://www.nongnu.org/cvs/
-Source0:	http://ftp.gnu.org/non-gnu/cvs/source/stable/%{version}/cvs-%{version}.tar.bz2
-Source1:	http://ftp.gnu.org/non-gnu/cvs/source/stable/%{version}/cvs-%{version}.tar.bz2.sig
+Url:		http://www.nongnu.org/cvs/
+Source0:	http://ftp.gnu.org/non-gnu/cvs/source/feature/%{version}/%{name}-%{version}.tar.bz2
+Source1:	http://ftp.gnu.org/non-gnu/cvs/source/feature/%{version}/%{name}-%{version}.tar.bz2.sig
 Source2: 	cvspserver
 Source3: 	cvs.conf
 Source4: 	cvs-xinetd
@@ -26,16 +26,16 @@ Patch6:		cvs-1.11.19-cvsbug.patch
 Patch7:		cvs-zlib-read.patch
 Patch8:		cvs-1.12.13-format_not_a_string_literal_and_no_format_arguments.diff
 Patch9:		cvs-1.12.13-CVE-2012-0804.diff
-Requires:	openssh-clients
-BuildRequires:	autoconf2.5
-BuildRequires:	krb5-devel
+
+BuildRequires:	groff
 BuildRequires:	tcsh
 BuildRequires:	texinfo
-BuildRequires:	pkgconfig(zlib)
 BuildRequires:	tetex-latex
 BuildRequires:	tetex-dvips
-BuildRequires:	groff
 BuildRequires:	vim-minimal
+BuildRequires:	krb5-devel
+BuildRequires:	pkgconfig(zlib)
+Requires:	openssh-clients
 
 %description
 CVS means Concurrent Version System; it is a version control
@@ -81,15 +81,16 @@ export SENDMAIL="%{_sbindir}/sendmail"
 export CXXFLAGS="${CFLAGS}"
 export CCFLAGS="${CFLAGS}"
 
-%configure2_5x	--with-tmpdir=/tmp \
-		--with-external-zlib \
-		--with-editor=vim
+%configure2_5x \
+	--with-tmpdir=/tmp \
+	--with-external-zlib \
+	--with-editor=vim
 
 %make
 
 pushd doc
-    make ps
-    make info
+make ps
+make info
 popd
 
 %install
@@ -124,5 +125,4 @@ bzip2 -f doc/*.ps
 %{_mandir}/man1/cvs.1*
 %{_mandir}/man5/cvs.5*
 %{_mandir}/man8/cvsbug.8*
-
 
