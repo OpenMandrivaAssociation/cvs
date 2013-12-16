@@ -3,7 +3,7 @@
 %else
 %define _requires_exceptions tcsh\\|/bin/csh
 %endif
-%define %debug_package %nil
+%define debug_package %nil
 
 Summary:	A version control system
 Name:		cvs
