@@ -26,6 +26,7 @@ Patch6:		cvs-1.11.19-cvsbug.patch
 Patch7:		cvs-zlib-read.patch
 Patch8:		cvs-1.12.13-format_not_a_string_literal_and_no_format_arguments.diff
 Patch9:		cvs-1.12.13-CVE-2012-0804.diff
+Patch10:	cvs-aarch64-detection.patch
 
 BuildRequires:	groff
 BuildRequires:	tcsh
@@ -69,6 +70,7 @@ control system.
 %patch7 -p0 -b .zlib-read
 %patch8 -p1 -b .format_not_a_string_literal_and_no_format_arguments
 %patch9 -p0 -b .CVE-2012-0804
+%patch10 -p1 -b .aarch64
 
 %build
 # http://qa.mandriva.com/show_bug.cgi?id=31848
