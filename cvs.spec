@@ -17,6 +17,7 @@ Source1:	http://ftp.gnu.org/non-gnu/cvs/source/feature/%{version}/%{name}-%{vers
 Source2: 	cvspserver
 Source3: 	cvs.conf
 Source4: 	cvs-xinetd
+Source5:	cvs.rpmlintrc
 Patch0:		cvs-1.11.19-varargs.patch
 Patch2: 	cvs-1.12.13-errno.patch
 Patch4:		cvs-1.11.1-newline.patch
