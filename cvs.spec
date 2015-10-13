@@ -5,6 +5,8 @@
 %endif
 %define debug_package %nil
 
+%define _disable_lto 1
+
 Summary:	A version control system
 Name:		cvs
 Version:	1.12.13
