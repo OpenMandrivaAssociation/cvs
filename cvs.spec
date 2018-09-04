@@ -34,9 +34,6 @@ Patch10:	cvs-aarch64-detection.patch
 
 BuildRequires:	groff
 BuildRequires:	tcsh
-BuildRequires:	texinfo
-BuildRequires:	tetex-latex
-BuildRequires:	tetex-dvips
 BuildRequires:	vim-minimal
 BuildRequires:	krb5-devel
 BuildRequires:	pkgconfig(zlib)
@@ -87,17 +84,12 @@ export SENDMAIL="%{_sbindir}/sendmail"
 export CXXFLAGS="${CFLAGS}"
 export CCFLAGS="${CFLAGS}"
 
-%configure2_5x \
+%configure \
 	--with-tmpdir=/tmp \
 	--with-external-zlib \
 	--with-editor=vim
 
 %make
-
-pushd doc
-make ps
-make info
-popd
 
 %install
 install -d %{buildroot}%{_sysconfdir}/xinetd.d
@@ -110,15 +102,8 @@ install -m0755 %{SOURCE2} %{buildroot}%{_sbindir}/
 install -m0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/cvs
 install -m0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/xinetd.d/%{name}
 
-bzip2 -f doc/*.ps
-
-# %check
-# Disabling currently
-# make check
-
 %files
 %doc BUGS FAQ MINOR-BUGS NEWS PROJECTS TODO README
-%doc doc/*.ps.bz2
 %config(noreplace) %{_sysconfdir}/xinetd.d/%{name}
 %dir %{_sysconfdir}/cvs
 %config(noreplace) %{_sysconfdir}/cvs/cvs.conf
@@ -131,4 +116,3 @@ bzip2 -f doc/*.ps
 %{_mandir}/man1/cvs.1*
 %{_mandir}/man5/cvs.5*
 %{_mandir}/man8/cvsbug.8*
-
