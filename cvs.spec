@@ -1,8 +1,5 @@
-%if %{_use_internal_dependency_generator}
-%define __noautoreq 'tcsh|/bin/csh'
-%else
-%define _requires_exceptions tcsh\\|/bin/csh
-%endif
+%define __requires_exceptions tcsh\\|/bin/csh
+%global __requires_exclude_from ^/usr/share/cvs/contrib/
 %define debug_package %nil
 
 %define _disable_lto 1
@@ -10,7 +7,7 @@
 Summary:	A version control system
 Name:		cvs
 Version:	1.12.13
-Release:	32
+Release:	33
 License:	GPL
 Group:		Development/Other
 Url:		http://www.nongnu.org/cvs/
@@ -37,6 +34,7 @@ BuildRequires:	tcsh
 BuildRequires:	vim-minimal
 BuildRequires:	krb5-devel
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:	gettext-devel
 Requires:	openssh-clients
 
 %description
@@ -62,7 +60,7 @@ control system.
 
 %prep
 
-%setup -q
+%autosetup -q
 %patch0 -p1 -b .varargs
 %patch2 -p1 -b .errno
 %patch4 -p1 -b .newline
@@ -72,6 +70,10 @@ control system.
 %patch8 -p1 -b .format_not_a_string_literal_and_no_format_arguments
 %patch9 -p0 -b .CVE-2012-0804
 %patch10 -p1 -b .aarch64
+
+# make autoreconf happy
+sed -i -e 's/AM_GNU_GETTEXT_VERSION.*/AM_GNU_GETTEXT_REQUIRE_VERSION(\[0.18.0\])/' configure.in
+sed -i -e 's/gl_AC_TYPE_LONG_LONG/AC_TYPE_LONG_LONG_INT/' m4/* configure.in
 
 %build
 # http://qa.mandriva.com/show_bug.cgi?id=31848
@@ -84,19 +86,22 @@ export SENDMAIL="%{_sbindir}/sendmail"
 export CXXFLAGS="${CFLAGS}"
 export CCFLAGS="${CFLAGS}"
 
+# to recognize aarch64
+autoreconf -vfi
+
 %configure \
 	--with-tmpdir=/tmp \
 	--with-external-zlib \
 	--with-editor=vim
 
-%make
+%make_build
 
 %install
 install -d %{buildroot}%{_sysconfdir}/xinetd.d
 install -d %{buildroot}%{_sysconfdir}/cvs
 install -d %{buildroot}%{_sbindir}
 
-%makeinstall
+%make_install
 
 install -m0755 %{SOURCE2} %{buildroot}%{_sbindir}/
 install -m0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/cvs
