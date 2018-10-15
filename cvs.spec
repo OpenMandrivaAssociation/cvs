@@ -59,8 +59,8 @@ Install the cvs package if you need to use a version
 control system.
 
 %prep
+%setuo -q
 
-%autosetup
 %patch0 -p1 -b .varargs
 %patch2 -p1 -b .errno
 %patch4 -p1 -b .newline
