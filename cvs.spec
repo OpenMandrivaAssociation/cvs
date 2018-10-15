@@ -60,7 +60,7 @@ control system.
 
 %prep
 
-%autosetup -q
+%autosetup
 %patch0 -p1 -b .varargs
 %patch2 -p1 -b .errno
 %patch4 -p1 -b .newline
