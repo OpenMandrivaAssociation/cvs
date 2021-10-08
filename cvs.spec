@@ -31,7 +31,7 @@ Patch10:	cvs-aarch64-detection.patch
 
 BuildRequires:	groff
 BuildRequires:	tcsh
-BuildRequires:	vim-minimal
+BuildRequires:	vim
 BuildRequires:	krb5-devel
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	gettext-devel
