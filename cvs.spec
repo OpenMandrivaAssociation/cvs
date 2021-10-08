@@ -1,6 +1,5 @@
 %define __requires_exceptions tcsh\\|/bin/csh
 %global __requires_exclude_from ^/usr/share/cvs/contrib/
-%define debug_package %nil
 
 %define _disable_lto 1
 
