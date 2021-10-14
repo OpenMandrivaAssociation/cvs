@@ -6,7 +6,7 @@
 Summary:	A version control system
 Name:		cvs
 Version:	1.12.13
-Release:	34
+Release:	35
 License:	GPL
 Group:		Development/Other
 Url:		http://www.nongnu.org/cvs/
