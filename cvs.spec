@@ -9,7 +9,7 @@ Version:	1.12.13
 Release:	36
 License:	GPL
 Group:		Development/Other
-Url:		http://www.nongnu.org/cvs/
+Url:		https://www.nongnu.org/cvs/
 Source0:	http://ftp.gnu.org/non-gnu/cvs/source/feature/%{version}/%{name}-%{version}.tar.bz2
 Source1:	http://ftp.gnu.org/non-gnu/cvs/source/feature/%{version}/%{name}-%{version}.tar.bz2.sig
 Source2: 	cvspserver
