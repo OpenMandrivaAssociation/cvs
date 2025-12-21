@@ -28,6 +28,11 @@ Patch8:		cvs-1.12.13-format_not_a_string_literal_and_no_format_arguments.diff
 Patch9:		cvs-1.12.13-CVE-2012-0804.diff
 Patch10:	cvs-aarch64-detection.patch
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	groff
 BuildRequires:	tcsh
 BuildRequires:	vim
